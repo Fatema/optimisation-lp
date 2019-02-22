@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{mwe}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{listings}
+
+\graphicspath{}
+
+\title{Optimization}
+\author{Fatema Alkhanaizi}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \section*{How to run}
+    There is a python script along with a jupyter notebook included with this report. Python, version 3.7, was used. 
+    \subsection*{Packages and Environemnt}
+    The following packages are required to run both the script and the notebook: \textbf{numpy, scipy, pymprog, networkx, matplotlib, sympy}. The first three packages are used for generating and solving the linear programs. \textbf{networkx and matplotlib} are used to draw the graphs. \textbf{sympy} is used to convert to rational format.   
+    All these packages can be installed to a python environemnt in the linux machines using pip install. For the notebook, it will require an anaconda environemnt along with all the packages mentioned. 
+    \subsection*{Run Instructions}
+    \subsubsection*{Jupyter notebook}
+    If you have an anaconda distribution, activate the environment that includes all the packages mentioned previously and use python3. Run the command `jupyter-notebook`; this will print a url that navigates to the notebook UI. Once you navigate to the notebook included for this assignment from the UI, run all the cells (Kernel $->$ Restart and Run All) There are some examples included at the end of the notebook and comments that specify all the included functions. There are two main functions: \textbf{lp\_clique(G)} and \textbf{lp\_entropy(G)}. Both functions take a paramater which is a graph that is in the dictionary of sets format e.g. 
+    \begin{lstlisting}[language=Python]
+        G = {1:{2,4,5}, 2:{1,3,4}, 3:{2,5}, 4: {1,2,5}, 5:{1,3,4}}
+    \end{lstlisting}
+    The graph is undirected so an edge $uv$ means that $v$ should be a neighbour of $u$ and vice-versa. 
+    Running \textbf{lp\_clique(G)} in one of the cells will return the optimal value for the fractional clique cover number $\pi^*(G)$ and the vector $\overline{x}$ in rational format. Similarly, running \textbf{lp\_entropy(G)} will return the optimal value for shannon entropy $\eta(G)$ and the vector $\overline{x}$ in rational format. A mapping between $\overline{x}$ vector and the subsets is included as well for clarity; the columns of the vector represent different subsets depending on the graph $G$ itself.  
+    \subsubsection*{Python Script}
+    Make sure you are using an environemnt that includes all the packages and uses python3. Only the following command is required for this script:
+    \begin{lstlisting}
+        python3 linear_programs.py 
+        {1:{2,4,5}, 2:{1,3,4}, 3:{2,5}, 4: {1,2,5}, 5:{1,3,4}} > output.txt
+    \end{lstlisting}
+    The script takes the graph in the same format mentioned for jupyter notebook version. This script will print out the output for both linear programs. For a more verbose output, this will require setting the verbose flag at the top of the script file:
+    \begin{lstlisting}[language=Python]
+        SET_VERBOSE = True
+    \end{lstlisting}
+    \section*{Linear Programs}
+    Different solver packages were tested 
+    \subsection*{Fractiona Clique Cover Number $\pi^*(G)$}
+    \subsection*{Shannon Entropy $\eta(G)$ }
+\end{document}
